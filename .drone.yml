@@ -1,0 +1,50 @@
+workspace:
+  base: /go
+  path: src
+
+clone:
+  git:
+    image: plugins/git:next
+    depth: 50
+    tags: true
+
+pipeline:
+  lint:
+    image: hadolint/hadolint:latest
+    pull: true
+    commands:
+      - hadolint Dockerfile
+    when:
+      event:
+        - push
+        - pull_request
+      branch:
+        - master
+
+  docker-latest:
+    image: plugins/docker:17.12
+    secrets: [ docker_username, docker_password ]
+    pull: true
+    repo: zzdats/dotnet-format
+    cache_from: zzdats/dotnet-format
+    build_args:
+      - dotnet_version=2.2-alpine3.9
+      - dotnet_format_version=3.0.4-prerelease.19175.6
+    tag:
+      - latest
+    when:
+      event: [ push ]
+      branch: [ master ]
+
+  docker-version:
+    image: plugins/docker:17.12
+    secrets: [ docker_username, docker_password ]
+    pull: true
+    repo: zzdats/dotnet-format
+    cache_from: zzdats/dotnet-format
+    build_args:
+      - dotnet_version=2.2-alpine3.9
+      - dotnet_format_version=3.0.4-prerelease.19175.6
+    auto_tag: true
+    when:
+      event: [ tag ]
