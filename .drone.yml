@@ -10,7 +10,7 @@ clone:
 
 pipeline:
   lint:
-    image: hadolint/hadolint:latest
+    image: hadolint/hadolint:latest-debian
     pull: true
     commands:
       - hadolint Dockerfile
