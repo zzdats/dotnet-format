@@ -1,5 +1,5 @@
 ARG dotnet_version
-FROM mcr.microsoft.com/dotnet/core/sdk:${dotnet_version}
+FROM mcr.microsoft.com/dotnet/sdk:${dotnet_version}
 
 ARG dotnet_format_version
 
