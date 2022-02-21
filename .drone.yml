@@ -28,8 +28,8 @@ pipeline:
     repo: zzdats/dotnet-format
     cache_from: zzdats/dotnet-format
     build_args:
-      - dotnet_version=3.1-alpine
-      - dotnet_format_version=4.1.131201
+      - dotnet_version=6.0-alpine
+      - dotnet_format_version=5.1.250801
     tag:
       - latest
     when:
@@ -43,8 +43,8 @@ pipeline:
     repo: zzdats/dotnet-format
     cache_from: zzdats/dotnet-format
     build_args:
-      - dotnet_version=3.1-alpine
-      - dotnet_format_version=4.1.131201
+      - dotnet_version=6.0-alpine
+      - dotnet_format_version=5.1.250801
     auto_tag: true
     when:
       event: [ tag ]
